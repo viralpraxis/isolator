@@ -343,6 +343,14 @@ To fix this, make sure `enqueue_after_transaction_commit` is set to true on `Act
 
 See https://github.com/palkan/isolator/issues/93 for details.
 
+## Occasional test failures related to connection reaping
+
+In some cases, connections may be reaped and replaced mid-test, which will most likely lead to test failures because Isolator currently does not track this situation.
+
+One way to mitigate this issue is to disable ActiveRecord's connection pool reaping by setting `reaping_frequency` to `nil`.
+
+See https://github.com/palkan/isolator/issues/83 for details.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/palkan/isolator.
